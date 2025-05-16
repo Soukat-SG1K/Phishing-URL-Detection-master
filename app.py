@@ -13,6 +13,8 @@ file = open("pickle/model.pkl","rb")
 gbc = pickle.load(file)
 file.close()
 
+print("Expected input shape:", gbc.n_features_in_)
+print("Feature names model expects:", gbc.feature_names_in_)
 
 app = Flask(__name__)
 
@@ -22,7 +24,7 @@ def index():
 
         url = request.form["url"]
         obj = FeatureExtraction(url)
-        x = np.array(obj.getFeaturesList()).reshape(1,30) 
+        x = np.array(obj.getFeaturesList()).reshape(1,31) 
 
         y_pred =gbc.predict(x)[0]
         #1 is safe       

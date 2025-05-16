@@ -13,7 +13,8 @@ from urllib.parse import urlparse
 
 class FeatureExtraction:
     features = []
-    def __init__(self,url):
+    def __init__(self,url, index=0):
+        self.index = index
         self.features = []
         self.url = url
         self.domain = ""
@@ -75,7 +76,12 @@ class FeatureExtraction:
         self.features.append(self.GoogleIndex())
         self.features.append(self.LinksPointingToPage())
         self.features.append(self.StatsReport())
+        self.features.append(self.Index())
 
+
+    def Index(self):
+    # Simply return the index assigned to this URL instance
+        return self.index
 
      # 1.UsingIp
     def UsingIp(self):
